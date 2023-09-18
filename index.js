@@ -15,6 +15,11 @@ const PORT = process.env.PORT || 4000
 app.use(express.json())
 app.use(cookieParser())
 
+// test route
+app.get("/", (req, res) => {
+    res.json("Api is working")
+})
+
 // auth routes
 app.use("/v1/auth", authRoutes)
 // community routes
@@ -26,9 +31,9 @@ app.use("/v1/role", roleRoutes)
 
 mongoose
     .connect(process.env.MONGO_URI)
-    .then(()=>{
-        app.listen(PORT, ()=>{console.log(`Server Started on port ${PORT}`);})
-    }).catch((err)=>{
+    .then(() => {
+        app.listen(PORT, () => { console.log(`Server Started on port ${PORT}`); })
+    }).catch((err) => {
         console.log(err);
     })
 
